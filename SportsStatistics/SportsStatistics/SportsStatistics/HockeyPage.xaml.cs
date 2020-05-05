@@ -25,15 +25,14 @@ namespace SportsStatistics
     {
         string membres;
         string titre;
-        System.Collections.IList teams;
+        List<string> teams = new List<string>();
 
         public HockeyPage(string pMembres, string pTitre)
         {
-            InitializeComponent();
-            InitControls();
-            InitList();
             membres = pMembres;
             titre = pTitre;
+            InitList();
+            InitControls();
         }
 
         private void InitList()

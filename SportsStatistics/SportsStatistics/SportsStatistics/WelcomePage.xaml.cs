@@ -27,17 +27,20 @@ namespace SportsStatistics
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WelcomePage : ContentPage
     {
+        private readonly string membres = "Nathan & Jonathan Z.";
+        private readonly string[] titres = { "Sports", "Basketball", "Football", "Soccer", "Hockey" };
         public WelcomePage()
         {
             InitializeComponent();
             InitControls();
         }
 
+        #region Methode pour initialiser les contrôles
         private void InitControls()
         {
             Label titleLabel = new Label
             {
-                Text = "Sports",
+                Text = titres[0],
                 BackgroundColor = Color.Red,
                 TextColor = Color.White,
                 FontSize = 40,
@@ -84,7 +87,7 @@ namespace SportsStatistics
 
             Label teamLabel = new Label
             {
-                Text = "Nathan & Jonathan Z",
+                Text = membres,
                 BackgroundColor = Color.Red,
                 TextColor = Color.White,
                 FontSize = 40,
@@ -106,5 +109,7 @@ namespace SportsStatistics
                 }
             };
         }
+
+        #endregion
     }
 }

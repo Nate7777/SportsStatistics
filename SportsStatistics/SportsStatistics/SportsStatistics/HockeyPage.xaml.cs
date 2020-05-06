@@ -23,9 +23,23 @@ namespace SportsStatistics
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HockeyPage : ContentPage
     {
+        #region Membres
+
         string membres;
         string titre;
+
+        Label title;
+        Label favoriteTeam;
+        Label favoriteTeamDisplay;
+        Picker teamPicker;
+        Button pagePrecedenteButton;
+        Label teamLabel;
+
         List<string> teams = new List<string>();
+
+        #endregion
+
+        #region Constructeur
 
         public HockeyPage(string pMembres, string pTitre)
         {
@@ -34,6 +48,10 @@ namespace SportsStatistics
             InitList();
             InitControls();
         }
+
+        #endregion
+
+        #region Methode pour initialiser la liste
 
         private void InitList()
         {
@@ -45,9 +63,12 @@ namespace SportsStatistics
             teams.Add("Detroit Red Wings");
         }
 
+        #endregion
+
+        #region Methode pour initialiser les controles
         public void InitControls()
         {
-            Label title = new Label
+            title = new Label
             {
                 Text = titre,
                 BackgroundColor = Color.Red,
@@ -57,7 +78,7 @@ namespace SportsStatistics
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
-            Label favoriteTeam = new Label
+            favoriteTeam = new Label
             {
                 Text = "Votre équipe préférée: ",
                 TextColor = Color.Black,
@@ -65,20 +86,27 @@ namespace SportsStatistics
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
-            Picker teamPicker = new Picker
+            favoriteTeamDisplay = new Label
+            {
+                TextColor = Color.Red,
+                FontSize = 16,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
+
+            teamPicker = new Picker
             {
                 Title = "Veuillez choisir votre équipe préférée",
                 ItemsSource = teams
             };
 
-            Button pagePrecedenteButton = new Button
+            pagePrecedenteButton = new Button
             {
                 Text = "Page précédente",
                 HorizontalOptions = LayoutOptions.Center,
-                WidthRequest = 70
+                WidthRequest = 150
             };
 
-            Label teamLabel = new Label
+            teamLabel = new Label
             {
                 Text = membres,
                 BackgroundColor = Color.Red,
@@ -95,13 +123,41 @@ namespace SportsStatistics
                 {
                     title,
                     favoriteTeam,
+                    favoriteTeamDisplay,
                     teamPicker,
                     pagePrecedenteButton,
                     teamLabel
                 }
             };
+
+            teamPicker.SelectedIndexChanged += TeamPicker_SelectedIndexChanged;
+            pagePrecedenteButton.Clicked += PagePrecedenteButton_Clicked;
         }
 
+        #endregion
 
+        #region Methode clique pour le bouton page precedente
+
+        async void PagePrecedenteButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Navigation.PopAsync();
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Erreur", ex.ToString(), "Annuler");
+            }
+        }
+
+        #endregion
+
+        #region Selected index changed pour le Picker
+        private void TeamPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            favoriteTeamDisplay.Text = teamPicker.SelectedItem.ToString();
+        }
+
+        #endregion
     }
 }

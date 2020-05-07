@@ -29,6 +29,7 @@ namespace SportsStatistics
     {
         private readonly string membres = "Nathan & Jonathan Z.";
         private readonly string[] titres = { "Sports", "Basketball", "Football", "Soccer", "Hockey" };
+
         public WelcomePage()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace SportsStatistics
         }
 
         #region Methode pour initialiser les contrôles
+
         private void InitControls()
         {
             Label titleLabel = new Label

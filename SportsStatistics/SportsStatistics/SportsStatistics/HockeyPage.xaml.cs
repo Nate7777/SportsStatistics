@@ -23,7 +23,7 @@ namespace SportsStatistics
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HockeyPage : ContentPage
     {
-        #region Membres
+        #region Champs
 
         string membres;
         string titre;
@@ -47,6 +47,7 @@ namespace SportsStatistics
             titre = pTitre;
             InitList();
             InitControls();
+            InitPicker();
         }
 
         #endregion
@@ -55,7 +56,7 @@ namespace SportsStatistics
 
         private void InitList()
         {
-            teams.Add("Montreal Canadiens");
+            teams.Add("Montreal Canadiens");           
             teams.Add("Boston Bruins");
             teams.Add("Toronto Maple Leafs");
             teams.Add("New York Rangers");
@@ -65,8 +66,20 @@ namespace SportsStatistics
 
         #endregion
 
+        #region Methode pour initialiser les valeurs du picker
+
+        private void InitPicker()
+        {
+            foreach(var str in teams)
+            {
+                teamPicker.Items.Add(str.ToString());
+            }
+        }
+
+        #endregion
+
         #region Methode pour initialiser les controles
-        public void InitControls()
+        private void InitControls()
         {
             title = new Label
             {
@@ -74,7 +87,7 @@ namespace SportsStatistics
                 BackgroundColor = Color.Red,
                 FontSize = 40,
                 TextColor = Color.White,
-                HorizontalOptions = LayoutOptions.Fill,
+                HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
@@ -88,15 +101,14 @@ namespace SportsStatistics
 
             favoriteTeamDisplay = new Label
             {
-                TextColor = Color.Red,
-                FontSize = 16,
+                TextColor = Color.Green,
+                FontSize = 18,
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
             teamPicker = new Picker
             {
-                Title = "Veuillez choisir votre équipe préférée",
-                ItemsSource = teams
+                Title = "Veuillez choisir votre équipe préférée"
             };
 
             pagePrecedenteButton = new Button

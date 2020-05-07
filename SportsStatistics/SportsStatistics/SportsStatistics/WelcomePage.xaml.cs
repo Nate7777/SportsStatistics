@@ -120,6 +120,9 @@ namespace SportsStatistics
             hockeyButton.Clicked += sportButton_Clicked;
         }
 
+        #endregion
+
+        #region Methode clique pour les boutons des sports
         async void sportButton_Clicked(object sender, EventArgs e)
         {
             try
@@ -145,14 +148,7 @@ namespace SportsStatistics
             {
                 await DisplayAlert("Erreur", ex.ToString(), "Annuler");
             }
-            
         }
-
-
-
         #endregion
-
-
-
     }
 }

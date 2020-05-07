@@ -23,7 +23,7 @@ namespace SportsStatistics
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FootballPage : ContentPage
     {
-        #region Membres
+        #region Champs
 
         string membres;
         string titre;
@@ -56,7 +56,7 @@ namespace SportsStatistics
                 BackgroundColor = Color.Red,
                 TextColor = Color.White,
                 FontSize = 40,
-                HorizontalOptions = LayoutOptions.Fill,
+                HorizontalOptions = LayoutOptions.Center,
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
@@ -102,7 +102,7 @@ namespace SportsStatistics
             {
                 FontSize = 18,
                 HorizontalTextAlignment = TextAlignment.Start,
-                TextColor = Color.Red
+                TextColor = Color.Green
             };
 
             pagePrecedente = new Button

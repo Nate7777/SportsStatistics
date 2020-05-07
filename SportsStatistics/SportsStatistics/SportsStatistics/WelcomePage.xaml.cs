@@ -126,7 +126,7 @@ namespace SportsStatistics
             {
                 if (sender == basketballButton)
                 {
-                    //await Navigation.PushAsync(new BasketballPage(membres, titres[1]));
+                    await Navigation.PushAsync(new BasketballPage(membres, titres[1]));
                 }
                 else if(sender == footballButton)
                 {
@@ -134,7 +134,7 @@ namespace SportsStatistics
                 }
                 else if(sender == soccerButton)
                 {
-                    //await Navigation.PushAsync(new SoccerPage(membres, titres[3]));
+                    await Navigation.PushAsync(new SoccerPage(membres, titres[3]));
                 }
                 else
                 {

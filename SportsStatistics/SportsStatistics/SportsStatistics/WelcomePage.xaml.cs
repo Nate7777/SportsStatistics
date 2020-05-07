@@ -30,6 +30,10 @@ namespace SportsStatistics
         private readonly string membres = "Nathan & Jonathan Z.";
         private readonly string[] titres = { "Sports", "Basketball", "Football", "Soccer", "Hockey" };
 
+        Button basketballButton;
+        Button footballButton;
+        Button hockeyButton;
+        Button soccerButton;
         public WelcomePage()
         {
             InitializeComponent();
@@ -37,7 +41,6 @@ namespace SportsStatistics
         }
 
         #region Methode pour initialiser les contrôles
-
         private void InitControls()
         {
             Label titleLabel = new Label
@@ -50,7 +53,7 @@ namespace SportsStatistics
                 HorizontalTextAlignment = TextAlignment.Center
             };
 
-            Button basketballButton = new Button
+            basketballButton = new Button
             {
                 ImageSource = "Images/basketball.jpg",
                 HorizontalOptions = LayoutOptions.Center,
@@ -60,7 +63,7 @@ namespace SportsStatistics
                 ContentLayout = new ButtonContentLayout(ImagePosition.Right, -10)
             };
 
-            Button footballButton = new Button
+            footballButton = new Button
             {
                 ImageSource = "Images/football.jpg",
                 HorizontalOptions = LayoutOptions.Center,
@@ -69,7 +72,7 @@ namespace SportsStatistics
                 ContentLayout = new ButtonContentLayout(ImagePosition.Right, -10)
             };
 
-            Button soccerButton = new Button
+            soccerButton = new Button
             {
                 ImageSource = "Images/soccer.png",
                 HorizontalOptions = LayoutOptions.Center,
@@ -78,7 +81,7 @@ namespace SportsStatistics
                 ContentLayout = new ButtonContentLayout(ImagePosition.Right, -10)
             };
 
-            Button hockeyButton = new Button
+            hockeyButton = new Button
             {
                 ImageSource = "Images/hockey.png",
                 HorizontalOptions = LayoutOptions.Center,
@@ -110,8 +113,46 @@ namespace SportsStatistics
                     teamLabel
                 }
             };
+
+            basketballButton.Clicked += sportButton_Clicked;
+            footballButton.Clicked += sportButton_Clicked;
+            soccerButton.Clicked += sportButton_Clicked;
+            hockeyButton.Clicked += sportButton_Clicked;
         }
 
+        async void sportButton_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                if (sender == basketballButton)
+                {
+                    //await Navigation.PushAsync(new BasketballPage(membres, titres[1]));
+                }
+                else if(sender == footballButton)
+                {
+                    await Navigation.PushAsync(new FootballPage(membres, titres[2]));
+                }
+                else if(sender == soccerButton)
+                {
+                    //await Navigation.PushAsync(new SoccerPage(membres, titres[3]));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new HockeyPage(membres, titres[4]));
+                }
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert("Erreur", ex.ToString(), "Annuler");
+            }
+            
+        }
+
+
+
         #endregion
+
+
+
     }
 }
